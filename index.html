@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Balaji Mobile Deesa | Premium 3D Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --purp: #7200ff;
+            --pink: #f000ff;
+            --dark-bg: #0a0e17;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --wa-num-color: #ffcc00; 
+            --wa-green: #25D366; 
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            background: linear-gradient(-45deg, #050b14, #0a0e17, #120a1d, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
+            touch-action: pan-y;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 15px;
+            perspective: 1200px;
+            contain: layout;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 15px 0 5px 0;
+            background: linear-gradient(to right, #fff, var(--purp), var(--pink));
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(114, 0, 255, 0.3);
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .signature-box {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            display: inline-block;
+            transform: rotate(-2deg);
+        }
+
+        .signature span {
+            display: inline-block;
+            background: linear-gradient(to right, var(--purp), var(--pink));
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: wave-text 1.5s infinite ease-in-out;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes wave-text {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); filter: brightness(1.5); }
+        }
+
+        .modded-by {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            opacity: 0.8;
+            margin-top: 2px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin-top: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        .wa-text {
+            color: var(--wa-green);
+            text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .wa-num {
+            color: var(--wa-num-color);
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+        }
+
+        .whatsapp-link i {
+            color: var(--wa-green);
+            font-size: 1rem;
+        }
+
+        .whatsapp-link:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-bar {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 5px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 10px 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, rgba(114, 0, 255, 0.2), rgba(240, 0, 255, 0.2));
+            color: #fff;
+            border: 1px solid rgba(240, 0, 255, 0.3);
+        }
+
+        .search-outer-glow {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 1.5px;
+            border-radius: 12px;
+            background: linear-gradient(to right, #f000ff 0%, #7200ff 50%, #00f2fe 100%);
+            box-shadow: -10px 0 25px rgba(240, 0, 255, 0.3), 10px 0 25px rgba(0, 242, 254, 0.3);
+            will-change: transform;
+        }
+
+        .search-inner-container {
+            display: flex;
+            align-items: center;
+            background: #000000;
+            border-radius: 11px;
+            padding: 2px 15px;
+            width: 100%;
+        }
+
+        #searchBar {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            padding: 12px 0;
+            outline: none;
+            text-align: left;
+        }
+
+        #searchBar::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        #accessoryList {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            min-height: 200px;
+        }
+
+        #accessoryList li {
+            position: relative;
+            background: transparent;
+            padding: 2px; 
+            border-radius: 14px;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            width: 100%;
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        }
+
+        #accessoryList li.show {
+            display: flex;
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        #accessoryList li::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(var(--purp), var(--pink), transparent 40%, var(--purp));
+            animation: rotateBorder 4s linear infinite;
+            top: -50%;
+            left: -50%;
+            z-index: 0;
+        }
+
+        @keyframes rotateBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card-content {
+            position: relative;
+            width: 100%;
+            background: #0d121f; 
+            padding: 12px 15px;
+            border-radius: 12px;
+            z-index: 1;
+            backface-visibility: hidden;
+        }
+
+        @keyframes specificBlinker {
+            0%, 100% { color: var(--primary); text-shadow: 0 0 10px var(--primary); opacity: 1; }
+            50% { color: #fff; text-shadow: none; opacity: 0.3; }
+        }
+
+        .blink-target {
+            animation: specificBlinker 0.6s linear infinite;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 6px;
+        }
+
+        .code-badge {
+            background: linear-gradient(135deg, var(--purp), var(--pink));
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .desc-text {
+            font-size: 0.7rem;
+            color: var(--pink);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .models-text {
+            color: #e2e8f0;
+            line-height: 1.4;
+            font-size: 0.85rem;
+            display: flex;
+            gap: 8px;
+            word-wrap: break-word;
+        }
+
+        .models-text i {
+            color: var(--purp);
+            margin-top: 3px;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #loading {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--purp);
+            margin-top: 30px;
+        }
+
+        #noResults {
+            background: rgba(255, 0, 80, 0.1);
+            color: #ff4d4d;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        @media (min-width: 600px) {
+            #accessoryList {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Balaji Mobile Deesa</h1>
+    
+    <div class="signature-box">
+        <span class="signature">
+            <span style="--i:1">R</span><span style="--i:2">i</span><span style="--i:3">d</span><span style="--i:4">h</span><span style="--i:5">a</span><span style="--i:6">m</span>
+            <span>&nbsp;</span>
+            <span style="--i:7">B</span><span style="--i:8">o</span><span style="--i:9">h</span><span style="--i:10">a</span><span style="--i:11">r</span><span style="--i:12">a</span>
+        </span>
+        <div class="modded-by">Modded by Ridham Bohara</div>
+        <a href="https://wa.me/919726165010" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> 
+            <span class="wa-text">WhatsApp No :</span> 
+            <span class="wa-num">9726165010</span>
+        </a>
+    </div>
+
+    <div class="tab-bar">
+        <button class="tab-button active" onclick="setCategory('glass', this)">
+            <i class="fas fa-shield-alt"></i> Glass
+        </button>
+        <button class="tab-button" onclick="setCategory('battery', this)">
+            <i class="fas fa-bolt"></i> Battery
+        </button>
+        <button class="tab-button" onclick="setCategory('cover', this)">
+            <i class="fas fa-mobile"></i> Cover
+        </button>
+    </div>
+
+    <div class="search-outer-glow">
+        <div class="search-inner-container">
+            <input type="text" id="searchBar" oninput="debounceSearch()" placeholder="Search....">
+        </div>
+    </div>
+
+    <div id="loading">
+        <i class="fas fa-circle-notch fa-spin"></i><br>
+        <span style="font-size: 0.8rem; opacity: 0.7;">Loading...</span>
+    </div>
+
+    <ul id="accessoryList"></ul>
+    
+    <div id="noResults">
+        <i class="fas fa-search-minus"></i> No matching models found.
+    </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoubYkpdAIvkHFxiQQI_HUEkfRKlTsiX0",
+    authDomain: "mobileapo-8273e.firebaseapp.com",
+    databaseURL: "https://mobileapo-8273e-default-rtdb.firebaseio.com",
+    projectId: "mobileapo-8273e",
+    storageBucket: "mobileapo-8273e.firebasestorage.app",
+    messagingSenderId: "483263296236",
+    appId: "1:483263296236:web:ee7c3c48508b99ac922bc9",
+    measurementId: "G-GTHV522T6G"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  let allData = {};
+  let currentCategory = 'glass';
+  let searchTimeout = null;
+  let listItemsCache = [];
+  let isTicking = false;
+
+  const dataRef = ref(db, 'accessories');
+  
+  onValue(dataRef, (snapshot) => {
+      document.getElementById('loading').style.display = 'none';
+      if (snapshot.exists()) {
+          allData = snapshot.val();
+          renderList();
+      } else {
+          allData = {};
+          document.getElementById('accessoryList').innerHTML = '<li style="text-align:center;">No data available</li>';
+      }
+  }, { onlyOnce: false });
+
+  window.setCategory = function(cat, btn) {
+      if(currentCategory === cat) return;
+      currentCategory = cat;
+      document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('searchBar').value = ""; 
+      renderList();
+      filterList(); 
+  }
+
+  window.renderList = function() {
+      const listContainer = document.getElementById('accessoryList');
+      listContainer.innerHTML = "";
+      
+      const categoryData = allData[currentCategory];
+      if (!categoryData) return;
+
+      const fragment = document.createDocumentFragment();
+      Object.values(categoryData).forEach(item => {
+          const li = document.createElement('li');
+          li.className = 'tilt-card';
+          li.setAttribute('data-models', item.models);
+          li.setAttribute('data-code', item.code);
+          
+          li.innerHTML = `
+              <div class="card-content">
+                  <div class="card-header">
+                      <span class="code-badge">${item.code}</span>
+                      <span class="desc-text">${item.desc || 'Premium'}</span>
+                  </div>
+                  <div class="models-text">
+                      <i class="fas fa-check-circle"></i>
+                      <span class="model-names-span">${item.models}</span>
+                  </div>
+              </div>
+          `;
+          fragment.appendChild(li);
+      });
+      listContainer.appendChild(fragment);
+      
+      listItemsCache = Array.from(listContainer.querySelectorAll('li'));
+      initTiltEffect();
+  }
+
+  window.debounceSearch = function() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+          filterList();
+      }, 100);
+  }
+
+  window.filterList = function() {
+      const filter = document.getElementById('searchBar').value.trim().toUpperCase();
+      let visibleCount = 0;
+
+      if (filter === "") {
+          listItemsCache.forEach(li => {
+              li.classList.remove('show');
+          });
+          document.getElementById('noResults').style.display = "none";
+          return;
+      }
+
+      const regex = new RegExp(`(${filter})`, "gi");
+
+      listItemsCache.forEach(li => {
+          const modelsText = li.getAttribute('data-models');
+          const codeText = li.getAttribute('data-code').toUpperCase();
+          const targetSpan = li.querySelector('.model-names-span');
+          
+          const isMatch = modelsText.toUpperCase().includes(filter) || codeText.includes(filter);
+
+          if (isMatch) {
+              li.classList.add('show');
+              visibleCount++;
+              
+              if (modelsText.toUpperCase().includes(filter)) {
+                  targetSpan.innerHTML = modelsText.replace(regex, '<span class="blink-target">$1</span>');
+              } else {
+                  targetSpan.textContent = modelsText;
+              }
+          } else {
+              li.classList.remove('show');
+          }
+      });
+
+      document.getElementById('noResults').style.display = (visibleCount === 0) ? "block" : "none";
+  }
+
+  function initTiltEffect() {
+      listItemsCache.forEach(card => {
+          card.addEventListener('mousemove', handleMove, { passive: true });
+          card.addEventListener('mouseleave', handleLeave, { passive: true });
+          card.addEventListener('touchmove', handleMove, { passive: true });
+          card.addEventListener('touchend', handleLeave, { passive: true });
+      });
+  }
+
+  function handleMove(e) {
+      if (isTicking) return;
+      isTicking = true;
+
+      requestAnimationFrame(() => {
+          const card = this;
+          const rect = card.getBoundingClientRect();
+          let xVal, yVal;
+          
+          if (e.touches) {
+              xVal = e.touches[0].clientX - rect.left;
+              yVal = e.touches[0].clientY - rect.top;
+          } else {
+              xVal = e.offsetX;
+              yVal = e.offsetY;
+          }
+
+          const yRotation = 10 * ((xVal - card.clientWidth / 2) / card.clientWidth);
+          const xRotation = -10 * ((yVal - card.clientHeight / 2) / card.clientHeight);
+          
+          card.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale3d(1.02, 1.02, 1.02)`;
+          isTicking = false;
+      });
+  }
+
+  function handleLeave() {
+      requestAnimationFrame(() => {
+          this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      });
+  }
+</script>
+
+</body>
+</html>
